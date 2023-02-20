@@ -61,3 +61,16 @@ Route::get('projeto_desenvolvedores', function (){
         echo "<hr>";
     }
 });
+
+Route::get('/alocar', function (){
+    $proj = Projeto::find(4);
+    if (isset($proj)){
+//        $proj->desenvolvedores()->attach(1, ['horas_semanais'=>50]);
+        $proj->desenvolvedores()->attach([
+            // o desenvolvedores sem () é atributo e retorna um array
+            // o desenvolvedores com () é uma funçao e retorna um objeto
+            2 => ['horas_semanais'=>50],
+            3 => [ 'horas_semanais' =>30]
+        ]);
+    }
+})
